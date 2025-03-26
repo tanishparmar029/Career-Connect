@@ -107,7 +107,7 @@ const Home = () => {
       >
         <Contact />
       </motion.div>
-
+      <hr />
       <Footer />
     </div>
   );

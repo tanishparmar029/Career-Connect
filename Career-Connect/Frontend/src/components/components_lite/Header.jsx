@@ -188,25 +188,6 @@ function Header() {
             </div>
           </div>
         </div>
-
-        {/* Featured Companies */}
-        <div className="mt-16 sm:mt-20 pt-8 border-t border-gray-200">
-          <h3 className="text-center text-sm sm:text-base text-gray-500 mb-6">
-            Trusted by leading companies
-          </h3>
-          <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-8 opacity-75">
-            {["Google", "Microsoft", "Apple", "Amazon", "Netflix"].map(
-              (company) => (
-                <img
-                  key={company}
-                  src={`wipro.png`}
-                  alt={company}
-                  className="h-6 sm:h-8 grayscale hover:grayscale-0 transition-all"
-                />
-              )
-            )}
-          </div>
-        </div>
       </div>
     </div>
   );
