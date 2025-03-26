@@ -1,29 +1,77 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "../ui/button";
 import { Bookmark, BookMarked } from "lucide-react";
 import { Avatar, AvatarImage } from "../ui/avatar";
 import { Badge } from "../ui/badge";
 import { useNavigate } from "react-router-dom";
+import { SAVEDJOBS_API_ENDPOINT } from "@/utils/data";
 
 const Job1 = ({ job }) => {
+  // Ensure job exists before destructuring
+  if (!job) {
+    return <p className="text-red-500">Job data is missing.</p>;
+  }
+
+  // Destructuring safely
   const {
-    company,
-    title,
-    description,
-    position,
-    salary,
-    location,
-    jobType,
+    company = {},
+    title = "Untitled Job",
+    description = "No description available.",
+    position = "N/A",
+    salary = "Not specified",
+    location = "Unknown",
+    jobType = "Unknown",
     _id,
+    createdAt,
   } = job;
 
-  const [isBookmarked, setIsBookmarked] = React.useState(false);
+  const [isBookmarked, setIsBookmarked] = useState(false);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const fetchSavedJobs = async () => {
+      try {
+        const response = await fetch(`${SAVEDJOBS_API_ENDPOINT}`, {
+          credentials: "include",
+        });
+        const data = await response.json();
+        if (data.some((savedJob) => savedJob.jobId === _id)) {
+          setIsBookmarked(true);
+        }
+      } catch (error) {
+        console.error("Error fetching saved jobs:", error);
+      }
+    };
+
+    if (_id) fetchSavedJobs();
+  }, [_id]);
+
+  const handleBookmarkClick = async () => {
+    try {
+      const response = await fetch(`${SAVEDJOBS_API_ENDPOINT}`, {
+        method: isBookmarked ? "DELETE" : "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ jobId: _id }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to update bookmark");
+      }
+
+      setIsBookmarked(!isBookmarked);
+    } catch (error) {
+      console.error("Error saving job:", error);
+    }
+  };
+
   const daysAgo = (mongodbTime) => {
+    if (!mongodbTime) return "N/A";
     const createdAt = new Date(mongodbTime);
     const timeDiff = new Date() - createdAt;
-    return Math.floor(timeDiff / (86400000)); // 86400000 ms in a day
+    return Math.floor(timeDiff / 86400000); // Convert ms to days
   };
 
   return (
@@ -32,10 +80,13 @@ const Job1 = ({ job }) => {
       <div className="flex justify-between items-start mb-4">
         <div className="flex items-center gap-3">
           <Avatar className="h-12 w-12">
-            <AvatarImage src={company?.logo} alt={company?.name} />
+            <AvatarImage
+              src={company?.logo || "/default-logo.png"}
+              alt={company?.name || "Company Logo"}
+            />
           </Avatar>
           <div>
-            <h3 className="text-lg font-semibold text-gray-900">{company?.name}</h3>
+            <h3 className="text-lg font-semibold text-gray-900">{company?.name || "Unknown Company"}</h3>
             <p className="text-sm text-gray-500">{location}</p>
           </div>
         </div>
@@ -43,7 +94,7 @@ const Job1 = ({ job }) => {
           variant="ghost"
           size="sm"
           className="text-gray-400 hover:text-blue-600 rounded-full"
-          onClick={() => setIsBookmarked(!isBookmarked)}
+          onClick={handleBookmarkClick}
         >
           {isBookmarked ? <BookMarked className="w-5 h-5" /> : <Bookmark className="w-5 h-5" />}
         </Button>
@@ -53,7 +104,7 @@ const Job1 = ({ job }) => {
       <div className="mb-4">
         <h2 className="text-xl font-bold text-gray-900 mb-2">{title}</h2>
         <p className="text-gray-600 line-clamp-3 mb-4">{description}</p>
-        
+
         <div className="flex flex-wrap gap-2">
           <Badge variant="outline" className="text-blue-600 bg-blue-50">
             {position} Openings
@@ -70,9 +121,9 @@ const Job1 = ({ job }) => {
       {/* Footer Section */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-t border-gray-100 pt-4">
         <div className="text-sm text-gray-500">
-          Posted {daysAgo(job?.createdAt) === 0 ? "today" : `${daysAgo(job?.createdAt)} days ago`}
+          Posted {daysAgo(createdAt) === 0 ? "today" : `${daysAgo(createdAt)} days ago`}
         </div>
-        
+
         <div className="flex gap-2 w-full sm:w-auto">
           <Button
             variant="outline"
@@ -81,9 +132,7 @@ const Job1 = ({ job }) => {
           >
             View Details
           </Button>
-          <Button
-            className="w-full sm:w-auto px-6 bg-blue-600 hover:bg-blue-700 text-white"
-          >
+          <Button className="w-full sm:w-auto px-6 bg-blue-600 hover:bg-blue-700 text-white">
             Apply Now
           </Button>
         </div>

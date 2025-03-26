@@ -6,7 +6,7 @@ import {
 } from "@/components/ui/popover";
 import { Avatar, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
-import { LogOut, User2, X, Menu } from "lucide-react";
+import { LogOut, User2, X, Menu, Bookmark } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "sonner";
@@ -159,6 +159,15 @@ function Navbar() {
                       >
                         <User2 className="h-5 w-5 text-gray-700" />
                         <span className="text-gray-700">View Profile</span>
+                      </Link>
+                    )}
+                    {user?.role === "Student" && (
+                      <Link
+                        to="/SavedJobs"
+                        className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 transition-colors"
+                      >
+                        <Bookmark className="h-5 w-5 text-gray-700" />
+                        <span className="text-gray-700">Saved Jobs</span>
                       </Link>
                     )}
                     <button
