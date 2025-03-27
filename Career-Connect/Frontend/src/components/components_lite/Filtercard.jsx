@@ -1,12 +1,7 @@
-<<<<<<< HEAD
-import React from "react";
-import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
-=======
 import React, { useEffect, useState } from "react";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { useDispatch } from "react-redux";
 import { setSearchedQuery } from "@/redux/jobSlice";
->>>>>>> Nik
 
 const filterData = [
   {
@@ -15,31 +10,14 @@ const filterData = [
       "Delhi",
       "Mumbai",
       "Kolhapur",
-<<<<<<< HEAD
-      "Udaipur",
-      "Mangalore",
-      "Salem",
-      "Chittoor",
-=======
       "Pune",
       "Bangalore",
       "Hyderabad",
       "Chennai",
->>>>>>> Nik
       "Remote",
     ],
   },
   {
-<<<<<<< HEAD
-    filterType: "Industry",
-    array: [
-      "IT",
-      "Finance",
-      "Marketing",
-      "Healthcare",
-      "Education",
-      "Manufacturing",
-=======
     filterType: "Technology",
     array: [
       "Mern",
@@ -53,7 +31,6 @@ const filterData = [
       "backend",
       "mobile",
       "desktop",
->>>>>>> Nik
     ],
   },
   {
@@ -67,8 +44,6 @@ const filterData = [
 ];
 
 const Filter = () => {
-<<<<<<< HEAD
-=======
   const [selectedValue, setSelectedValue] = useState("");
   const handleChange = (value) => {
     setSelectedValue(value);
@@ -78,24 +53,10 @@ const Filter = () => {
     dispatch(setSearchedQuery(selectedValue));
   }, [selectedValue]);
 
->>>>>>> Nik
   return (
     <div className="w-full bg-white rounded-md">
       <h1 className="font-bold text-lg">Filter Jobs</h1>
       <hr className="mt-3" />
-<<<<<<< HEAD
-      <RadioGroup>
-        {filterData.map((data, index) => (
-          <div key={data.filterType}> {/* Added key here */}
-            <h2 className="font-bold text-lg">{data.filterType}</h2>
-
-            {data.array.map((item, idx) => (
-              <div key={item} className="flex items-center space-x-2 my-2"> {/* Added key here */}
-                <RadioGroupItem value={item}></RadioGroupItem>
-                <label>{item}</label>
-              </div>
-            ))}
-=======
       <RadioGroup value={selectedValue} onValueChange={handleChange}>
         {filterData.map((data, index) => (
           <div key={index}>
@@ -110,7 +71,6 @@ const Filter = () => {
                 </div>
               );
             })}
->>>>>>> Nik
           </div>
         ))}
       </RadioGroup>
@@ -118,8 +78,4 @@ const Filter = () => {
   );
 };
 
-<<<<<<< HEAD
 export default Filter;
-=======
-export default Filter;
->>>>>>> Nik

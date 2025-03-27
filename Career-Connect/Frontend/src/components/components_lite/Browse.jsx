@@ -1,24 +1,3 @@
-<<<<<<< HEAD
-import React from "react";
-import Navbar from "./Navbar";
-import Job1 from "./Job1";
-
-const randomJobs = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
-const Browse = () => {
-  return (
-    <div>
-    <Navbar />
-    <div className="max-w-7xl mx-auto my-10 p-2 ">
-      <h1 className="font-bold text-xl my-10">Search Results {randomJobs.length}</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-        {randomJobs.map((item, index) => {
-          return <Job1 key={index} job={item} />;
-        })}
-      </div>
-    </div>
-  </div>
-=======
 import React, { useEffect, useState, useCallback } from "react";
 import Navbar from "./Navbar";
 import Job1 from "./Job1";
@@ -36,7 +15,7 @@ const Browse = () => {
   const [page, setPage] = useState(1);
   const [limit] = useState(9);
   const [localSearch, setLocalSearch] = useState("");
-  const { allJobs, totalJobs, loading, searchedQuery } = useSelector((store) => store.jobs);
+  const { allJobs, totalJobs, loading, error, searchedQuery } = useSelector((store) => store.jobs);
   const dispatch = useDispatch();
 
   // Debounce setup
@@ -92,6 +71,11 @@ const Browse = () => {
 
         {/* Results Header */}
         <div className="mb-8 flex flex-col sm:flex-row justify-between items-center">
+          <h1 className="text-2xl font-bold text-gray-900 mb-4 sm:mb-0">
+            {totalJobs > 0 
+              ? `${totalJobs} ${totalJobs === 1 ? 'Job' : 'Jobs'} Found`
+              : "No Jobs Found"}
+          </h1>
           {totalJobs > 0 && (
             <span className="text-gray-500 text-sm">
               Showing {Math.min(page * limit, totalJobs)} results
@@ -127,7 +111,6 @@ const Browse = () => {
       </div>
       <Footer/>
     </div>
->>>>>>> Nik
   );
 };
 

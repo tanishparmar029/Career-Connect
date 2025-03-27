@@ -1,16 +1,9 @@
 import React from "react";
-<<<<<<< HEAD
-import Login from "./components/authentication/Login";
-import Register from "./components/authentication/Register";
-import Home from "./components/components_lite/Home";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-=======
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Login from "./components/authentication/Login";
 import Register from "./components/authentication/Register";
 import Home from "./components/components_lite/Home";
->>>>>>> Nik
 import Navbar from "./components/components_lite/Navbar";
 import PrivacyPolicy from "./components/components_lite/PrivacyPolicy";
 import Jobs from "./components/components_lite/Jobs";
@@ -19,8 +12,6 @@ import Profile from "./components/components_lite/Profile";
 import Description from "./components/components_lite/Description";
 import TermsOfService from "./components/components_lite/TermsofService";
 
-<<<<<<< HEAD
-=======
 import Companies from "./components/admincomponents/Companies";
 import CompanyCreate from "./components/admincomponents/CompanyCreate";
 import CompanySetup from "./components/admincomponents/CompanySetup";
@@ -33,7 +24,6 @@ import ForgetPassword from "./components/authentication/ForgetPassword";
 import ResetPassword from "./components/authentication/ResetPassword";
 import SavedJobs from "./components/components_lite/SavedJobs";
 
->>>>>>> Nik
 const appRouter = createBrowserRouter([
   { path: "/", element: <Home /> },
   { path: "/login", element: <Login /> },
@@ -43,10 +33,6 @@ const appRouter = createBrowserRouter([
   { path: "/Browse", element: <Browse /> },
   { path: "/Home", element: <Home /> },
   { path: "/Profile", element: <Profile /> },
-<<<<<<< HEAD
-  { path: "/description/:id", element: <Description /> },
-  { path: "/Tos", element: <TermsOfService /> },
-=======
   { path: "/SavedJobs", element: <SavedJobs /> },
   { path: "/description/:id", element: <Description /> },
   { path: "/Tos", element: <TermsOfService /> },
@@ -116,7 +102,6 @@ const appRouter = createBrowserRouter([
       </ProtectedRoute>
     ),
   },
->>>>>>> Nik
 ]);
 
 function App() {
@@ -127,8 +112,4 @@ function App() {
   );
 }
 
-<<<<<<< HEAD
 export default App;
-=======
-export default App;
->>>>>>> Nik

@@ -1,31 +1,3 @@
-<<<<<<< HEAD
-import React, { useRef } from 'react';
-import Navbar from './Navbar';
-import Header from './Header';
-import Categories from './Categories';
-import LatestJobs from './LatestJobs';
-import Footer from './Footer';
-import Download from './Download';
-import VariableProximity from './VariableProximity';
-import Faq from './Faq';
-import Contact from './Contact';
-import TopRecriters from './TopRecriters';
-
-const Home = () => {
-  // Define a containerRef for VariableProximity
-  const containerRef = useRef(null);
-
-  return (
-    <div>
-      <Navbar />
-      <Header />
-      <Categories />
-      <LatestJobs />
-      <TopRecriters/>
-      <Download />
-      <Faq/>
-      <Contact/>
-=======
 import React, { useEffect } from "react";
 import { motion } from "framer-motion"; // Import Framer Motion
 import { useSelector } from "react-redux";
@@ -125,14 +97,10 @@ const Home = () => {
       >
         <Faq />
       </motion.div>
->>>>>>> Nik
+
       <Footer />
     </div>
   );
 };
 
-<<<<<<< HEAD
 export default Home;
-=======
-export default Home;
->>>>>>> Nik

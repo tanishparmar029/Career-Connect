@@ -2,17 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   allJobs: [],
-<<<<<<< HEAD
-  allAdminJobs: [], // This will hold
-  singleJob: null, // This will hold the job details when a user clicks on a job
-  searchJobByText: "",
-  allAppliedJobs: [], // This will hold
-=======
   allAdminJobs: [], 
   singleJob: null, // This will hold the job details when a user clicks on a job
   searchJobByText: "",
   allAppliedJobs: [], 
->>>>>>> Nik
   searchedQuery: "",
 };
 

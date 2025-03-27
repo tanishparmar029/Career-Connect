@@ -23,8 +23,4 @@ export const { setLoading, setUser } = authSlice.actions;
 export default authSlice.reducer;
 
 //export the auth slice reducer for use in other parts of the app
-<<<<<<< HEAD
 export const authSliceReducer = authSlice.reducer; // Add this line if you want to use the reducer
-=======
-export const authSliceReducer = authSlice.reducer; // Add this line if you want to use the reducer
->>>>>>> Nik
