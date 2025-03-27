@@ -19,7 +19,7 @@ const JobCards = ({ job }) => {
           {job.name}
         </h1>
         <p className="text-xs sm:text-sm text-gray-500 group-hover:text-gray-700 transition-colors duration-300">
-          India
+          {job.location}
         </p>
       </div>
 

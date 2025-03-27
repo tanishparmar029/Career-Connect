@@ -11,7 +11,6 @@ import TestimonialSection from "./TestiMonials";
 import Download from "./Download";
 import TopRecriters from "./TopRecriters";
 import Faq from "./Faq";
-import Contact from "./Contact";
 import Footer from "./Footer";
 
 const Home = () => {
@@ -98,16 +97,6 @@ const Home = () => {
       >
         <Faq />
       </motion.div>
-
-      <motion.div
-        variants={fadeSlideVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
-      >
-        <Contact />
-      </motion.div>
-
       <Footer />
     </div>
   );

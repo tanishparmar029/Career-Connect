@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Navbar from "./Navbar";
 import { Avatar, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
-import { Contact, Mail, Pen, Download } from "lucide-react";
+import { Contact, Mail, Pen, FileSliders } from "lucide-react";
 import { Badge } from "../ui/badge";
 import AppliedJob from "./Appliedjobs";
 import EditProfileModal from "./EditProfileModal";
@@ -80,7 +80,7 @@ const Profile = () => {
                   className="flex items-center justify-between p-3 bg-purple-50 rounded-lg hover:bg-purple-100 transition-colors"
                 >
                   <div className="flex items-center gap-3">
-                    <Download className="w-5 h-5 text-purple-600" />
+                    <FileSliders  className="w-5 h-5 text-purple-600" />
                     <span className="text-gray-700 font-medium">
                       {user.profile.resumeOriginalName || "Download Resume"}
                     </span>

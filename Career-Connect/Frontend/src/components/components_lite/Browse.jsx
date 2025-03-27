@@ -15,7 +15,7 @@ const Browse = () => {
   const [page, setPage] = useState(1);
   const [limit] = useState(9);
   const [localSearch, setLocalSearch] = useState("");
-  const { allJobs, totalJobs, loading, error, searchedQuery } = useSelector((store) => store.jobs);
+  const { allJobs, totalJobs, loading, searchedQuery } = useSelector((store) => store.jobs);
   const dispatch = useDispatch();
 
   // Debounce setup
@@ -71,11 +71,6 @@ const Browse = () => {
 
         {/* Results Header */}
         <div className="mb-8 flex flex-col sm:flex-row justify-between items-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4 sm:mb-0">
-            {totalJobs > 0 
-              ? `${totalJobs} ${totalJobs === 1 ? 'Job' : 'Jobs'} Found`
-              : "No Jobs Found"}
-          </h1>
           {totalJobs > 0 && (
             <span className="text-gray-500 text-sm">
               Showing {Math.min(page * limit, totalJobs)} results

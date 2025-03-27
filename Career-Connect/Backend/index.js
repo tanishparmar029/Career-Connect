@@ -10,6 +10,7 @@ import authRoute from "./routes/auth.route.js"; // Fixed ES Module export
 import companyRoute from "./routes/company.route.js";
 import jobRoute from "./routes/job.route.js";
 import applicationRoute from "./routes/application.route.js";
+import savedJobsRoutes from "./routes/savedjobs.routes.js";
 
 // Load environment variables
 dotenv.config();
@@ -38,6 +39,7 @@ app.use("/api/auth", authRoute); // Registered auth route
 app.use("/api/company", companyRoute);
 app.use("/api/job", jobRoute);
 app.use("/api/application", applicationRoute);
+app.use("/api/savedjobs", savedJobsRoutes);
 
 // Handle 404 - Route Not Found
 app.use((req, res, next) => {

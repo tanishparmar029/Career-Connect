@@ -3,18 +3,14 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
+    
     <div className="bg-gray-50 border-t border-gray-200 py-12">
       <footer className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Brand Section */}
           <div className="md:col-span-1">
-            <div className="flex items-center mb-4">
-              <img 
-                src="sparelogo.png" 
-                alt="Career Connect Logo" 
-                className="h-10 w-10 transition-opacity hover:opacity-80"
-              />
-              <span className="ml-3 text-2xl font-bold text-gray-900">Career Connect</span>
+            <div className="flex items-center mb-4 text-2xl font-bold">
+              Career<span className="text-[#512b95]">Connect</span>
             </div>
             <p className="text-sm text-gray-500 mt-2">
               Connecting talent with opportunity worldwide
@@ -97,20 +93,11 @@ const Footer = () => {
             </div>
           </div>
         </div>
-
         {/* Copyright */}
         <div className="border-t border-gray-200 pt-8 text-center">
           <p className="text-sm text-gray-500">
             &copy; {new Date().getFullYear()} Career Connect. All rights reserved.
           </p>
-          <div className="mt-2 flex justify-center space-x-4">
-            <Link to="/accessibility" className="text-sm text-gray-500 hover:text-blue-600">
-              Accessibility
-            </Link>
-            <Link to="/sitemap" className="text-sm text-gray-500 hover:text-blue-600">
-              Sitemap
-            </Link>
-          </div>
         </div>
       </footer>
     </div>
