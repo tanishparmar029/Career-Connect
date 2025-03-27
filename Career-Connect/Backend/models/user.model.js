@@ -33,7 +33,11 @@ const userSchema = new mongoose.Schema(
       resume: {
         type: String, // URL to resume file
       },
+<<<<<<< HEAD
       resumeOriginalname: {
+=======
+      resumeOriginalName: {
+>>>>>>> Nik
         type: String, // Original name of resume file
       },
       company: {

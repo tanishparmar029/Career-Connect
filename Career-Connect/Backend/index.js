@@ -3,6 +3,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./utils/db.js";
+<<<<<<< HEAD
 import userRoute from "./routes/user.route.js";
 import companyRoute from "./routes/company.route.js";
 import jobRoute from "./routes/job.route.js";
@@ -12,14 +13,40 @@ dotenv.config({});
 const app = express();
 
 //middleware
+=======
+
+// Import route files
+import userRoute from "./routes/user.route.js";
+import authRoute from "./routes/auth.route.js"; // Fixed ES Module export
+import companyRoute from "./routes/company.route.js";
+import jobRoute from "./routes/job.route.js";
+import applicationRoute from "./routes/application.route.js";
+import savedJobsRoutes from "./routes/savedjobs.routes.js";
+
+// Load environment variables
+dotenv.config();
+
+// Initialize Express app
+const app = express();
+
+// Connect to Database before middleware
+connectDB();
+
+// Middleware
+>>>>>>> Nik
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+<<<<<<< HEAD
+=======
+// CORS Configuration
+>>>>>>> Nik
 const corsOptions = {
   origin: ["http://localhost:5173"],
   credentials: true,
 };
+<<<<<<< HEAD
 
 app.use(cors(corsOptions));
 
@@ -36,4 +63,31 @@ app.use("/api/application", applicationRoute);
 app.listen(PORT, () => {
   connectDB();
   console.log(`Server is running on port ${PORT}`);
+=======
+app.use(cors(corsOptions));
+
+// API Routes
+app.use("/api/user", userRoute);
+app.use("/api/auth", authRoute); // Registered auth route
+app.use("/api/company", companyRoute);
+app.use("/api/job", jobRoute);
+app.use("/api/application", applicationRoute);
+app.use("/api/savedjobs", savedJobsRoutes);
+
+// Handle 404 - Route Not Found
+app.use((req, res, next) => {
+  res.status(404).json({ message: "Route Not Found" });
+});
+
+// Error Handling Middleware
+app.use((err, req, res, next) => {
+  console.error("Error:", err.message);
+  res.status(500).json({ message: "Internal Server Error" });
+});
+
+// Start Server
+const PORT = process.env.PORT || 5001;
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
+>>>>>>> Nik
 });

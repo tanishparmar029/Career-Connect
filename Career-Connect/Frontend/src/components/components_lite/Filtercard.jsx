@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 import React from "react";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
+=======
+import React, { useEffect, useState } from "react";
+import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
+import { useDispatch } from "react-redux";
+import { setSearchedQuery } from "@/redux/jobSlice";
+>>>>>>> Nik
 
 const filterData = [
   {
@@ -8,14 +15,22 @@ const filterData = [
       "Delhi",
       "Mumbai",
       "Kolhapur",
+<<<<<<< HEAD
       "Udaipur",
       "Mangalore",
       "Salem",
       "Chittoor",
+=======
+      "Pune",
+      "Bangalore",
+      "Hyderabad",
+      "Chennai",
+>>>>>>> Nik
       "Remote",
     ],
   },
   {
+<<<<<<< HEAD
     filterType: "Industry",
     array: [
       "IT",
@@ -24,6 +39,21 @@ const filterData = [
       "Healthcare",
       "Education",
       "Manufacturing",
+=======
+    filterType: "Technology",
+    array: [
+      "Mern",
+      "React",
+      "Data Scientist",
+      "Fullstack",
+      "Node",
+      "Python",
+      "Java",
+      "frontend",
+      "backend",
+      "mobile",
+      "desktop",
+>>>>>>> Nik
     ],
   },
   {
@@ -37,10 +67,23 @@ const filterData = [
 ];
 
 const Filter = () => {
+<<<<<<< HEAD
+=======
+  const [selectedValue, setSelectedValue] = useState("");
+  const handleChange = (value) => {
+    setSelectedValue(value);
+  };
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(setSearchedQuery(selectedValue));
+  }, [selectedValue]);
+
+>>>>>>> Nik
   return (
     <div className="w-full bg-white rounded-md">
       <h1 className="font-bold text-lg">Filter Jobs</h1>
       <hr className="mt-3" />
+<<<<<<< HEAD
       <RadioGroup>
         {filterData.map((data, index) => (
           <div key={data.filterType}> {/* Added key here */}
@@ -52,6 +95,22 @@ const Filter = () => {
                 <label>{item}</label>
               </div>
             ))}
+=======
+      <RadioGroup value={selectedValue} onValueChange={handleChange}>
+        {filterData.map((data, index) => (
+          <div key={index}>
+            <h2 className="font-bold text-lg">{data.filterType}</h2>
+
+            {data.array.map((item, indx) => {
+              const itemId = `Id${index}-${indx}`;
+              return (
+                <div key={itemId} className="flex items-center space-x-2 my-2">
+                  <RadioGroupItem value={item} id={itemId}></RadioGroupItem>
+                  <label htmlFor={itemId}>{item}</label>
+                </div>
+              );
+            })}
+>>>>>>> Nik
           </div>
         ))}
       </RadioGroup>
@@ -59,4 +118,8 @@ const Filter = () => {
   );
 };
 
+<<<<<<< HEAD
 export default Filter;
+=======
+export default Filter;
+>>>>>>> Nik
