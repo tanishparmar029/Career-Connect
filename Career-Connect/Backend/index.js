@@ -11,6 +11,7 @@ import companyRoute from "./routes/company.route.js";
 import jobRoute from "./routes/job.route.js";
 import applicationRoute from "./routes/application.route.js";
 import savedJobsRoutes from "./routes/savedjobs.routes.js";
+import path, { resolve } from "path";
 
 // Load environment variables
 dotenv.config();
@@ -51,6 +52,14 @@ app.use((err, req, res, next) => {
   console.error("Error:", err.message);
   res.status(500).json({ message: "Internal Server Error" });
 });
+
+if (process.env.NODE_ENV === "production") {
+  const dirpath = path.resolve();
+  app.use(express.static("./Frontend/dist"));
+  app.get("/*", (req, res) => {
+    res.sendFile(path.resolve(dirpath, "./Frontend/dist", "index.html"));
+  });
+}
 
 // Start Server
 const PORT = process.env.PORT || 5001;
